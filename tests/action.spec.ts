@@ -2,13 +2,13 @@ import { describe, it, jest } from '@jest/globals';
 
 jest.unstable_mockModule('msteams-message-cards', () => ({
   createMessageCardPayload: jest.fn(),
-  sendMessageCard: jest.fn()
+  sendMessageCard: jest.fn(),
 }));
 jest.unstable_mockModule('@actions/core', () => ({
   startGroup: jest.fn(),
   endGroup: jest.fn(),
   getInput: jest.fn(),
-  info: jest.fn()
+  info: jest.fn(),
 }));
 
 const { createMessageCardPayload, sendMessageCard } = await import('msteams-message-cards');
@@ -19,7 +19,7 @@ describe('Action', () => {
   it('should call message card lib functions', async () => {
     (createMessageCardPayload as unknown as jest.Mock).mockClear().mockReturnValueOnce({ fake: true });
     (sendMessageCard as unknown as jest.Mock).mockClear().mockReturnValueOnce(Promise.resolve());
-    (getInput as unknown as jest.Mock).mockClear().mockImplementation(input => {
+    (getInput as unknown as jest.Mock).mockClear().mockImplementation((input) => {
       switch (input) {
         case 'webhook': {
           return 'https://my-webhook.com/';
@@ -44,7 +44,7 @@ describe('Action', () => {
       sections: [],
       text: 'Hello World!',
       title: 'Hiho!',
-      color: 'red'
+      color: 'red',
     });
     expect(sendMessageCard).toHaveBeenCalledWith({ payload: { fake: true }, webhookURL: 'https://my-webhook.com/' });
   });
@@ -52,7 +52,7 @@ describe('Action', () => {
   it('should parse buttons', async () => {
     (createMessageCardPayload as unknown as jest.Mock).mockClear().mockReturnValueOnce({ fake: true });
     (sendMessageCard as unknown as jest.Mock).mockClear().mockReturnValueOnce(Promise.resolve());
-    (getInput as unknown as jest.Mock).mockClear().mockImplementation(input => {
+    (getInput as unknown as jest.Mock).mockClear().mockImplementation((input) => {
       switch (input) {
         case 'webhook': {
           return 'https://my-webhook.com/';
@@ -72,7 +72,7 @@ describe('Action', () => {
     expect(createMessageCardPayload).toHaveBeenCalledWith({
       buttons: [{ label: 'foo', url: 'http://foo.com/' }],
       sections: [],
-      text: 'Hello World!'
+      text: 'Hello World!',
     });
     expect(sendMessageCard).toHaveBeenCalledWith({ payload: { fake: true }, webhookURL: 'https://my-webhook.com/' });
   });
@@ -80,7 +80,7 @@ describe('Action', () => {
   it('should pass-through sections', async () => {
     (createMessageCardPayload as unknown as jest.Mock).mockClear().mockReturnValueOnce({ fake: true });
     (sendMessageCard as unknown as jest.Mock).mockClear().mockReturnValueOnce(Promise.resolve());
-    (getInput as unknown as jest.Mock).mockClear().mockImplementation(input => {
+    (getInput as unknown as jest.Mock).mockClear().mockImplementation((input) => {
       switch (input) {
         case 'webhook': {
           return 'https://my-webhook.com/';
@@ -100,7 +100,7 @@ describe('Action', () => {
     expect(createMessageCardPayload).toHaveBeenCalledWith({
       buttons: [],
       sections: [{ facts: [{ name: 'foo', value: 'bar' }] }],
-      text: 'Hello World!'
+      text: 'Hello World!',
     });
     expect(sendMessageCard).toHaveBeenCalledWith({ payload: { fake: true }, webhookURL: 'https://my-webhook.com/' });
   });

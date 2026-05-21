@@ -1,4 +1,4 @@
-# simbo/msteams-message-card-action
+# igus/teams-message-card-action
 
 A simple and lightning-fast GitHub action to send notifications as message cards
 to an MS Teams webhook by using the
@@ -18,7 +18,7 @@ for actionable message cards.
 
 ## Usage
 
-Add `simbo/msteams-message-card-action@v1` to your workflow.
+Add `igus/teams-message-card-action@v1` to your workflow.
 
 ### Simple Example
 
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📣 Send teams notification
-        uses: simbo/msteams-message-card-action@latest
+        uses: igus/teams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK }}
           message: Hello world!
@@ -50,7 +50,7 @@ jobs:
           echo "MY_SPECIAL_BUTTON=Cool https://this-is-so.cool/" >> $GITHUB_ENV
 
       - name: 📣 Send teams notification
-        uses: simbo/msteams-message-card-action@latest
+        uses: igus/teams-message-card-action@latest
         env:
           MY_AWESOME_BUTTON: Awesome http://this-is-so.awesome/
         with:
@@ -79,7 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 📣 Send teams notification
-        uses: simbo/msteams-message-card-action@latest
+        uses: igus/teams-message-card-action@latest
         with:
           webhook: ${{ secrets.TEAMS_WEBHOOK }}
           title: Hello world!
@@ -135,9 +135,9 @@ A release workflow will pick up the tag when pushed to GitHub, create a release
 and move major, minor and latest tags accordingly.
 
 To publish the release into the GitHub marketplace open
-[releases](https://github.com/simbo/msteams-message-card-action/releases) and
+[releases](https://github.com/igus/teams-message-card-action/releases) and
 update the release for marketplace publishing.
 
-## License and Author
+## Original Author
 
-[MIT &copy; Simon Lepel](http://simbo.mit-license.org/)
+[Simon Lepel](http://simbo.mit-license.org/)

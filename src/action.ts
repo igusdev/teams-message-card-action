@@ -28,7 +28,7 @@ export async function action() {
 
   const payloadOptions: PayloadOptions = {
     buttons,
-    sections: Array.isArray(sections) ? sections : []
+    sections: Array.isArray(sections) ? sections : [],
   };
 
   if (typeof title === 'string' && title.length > 0) {
